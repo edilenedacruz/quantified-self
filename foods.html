@@ -63,6 +63,7 @@
     </div>
 
   <script src="main.bundle.js"></script>
+    
   <script>
 function myFunction() {
 
@@ -133,12 +134,36 @@ function validations (){
   }else if($('#food-name')[0].value == ""){
     $('#name-warning').css("display", "inline")
   }else{
-    $('#name-warning').css("display", "none")
-    $('#calorie-warning').css("display", "none")
     createFood()
   }
 
 }
+</script>
+<script>
+  function rowEditVerification(row, e){
+    if (e){
+      if (e.keyCode == 13){
+        rowEdit(row)
+      }
+    }else{
+      rowEdit(row)
+    }
+
+  }
+</script>
+<script>
+  function rowEdit (row){
+    let foodParams = {name:row.closest('tr').children[0].innerHTML,visible:"true", calories:row.closest('tr').children[1].innerHTML}
+    $.ajax({
+      url: `http://localhost:3000/api/v1/foods/${row.closest('tr').children[2].innerHTML}`,
+      type: 'PATCH',
+      data: foodParams,
+    }).then(location.reload())
+      .catch(function(error){
+      console.error(error)
+    })
+  }
+
 </script>
 </body>
 </html>
