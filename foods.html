@@ -21,19 +21,26 @@
                 <label for="">Name</label>
                 <input type="" class="form-control" id="food-name" placeholder="Enter a food name">
               </div>
+              <div id="name-warning" style="display:none">
+                <p style="color:red">Please enter a food name</p>
+              </div>
               <div class="form-group">
                 <label for="">Calories</label>
                 <input type="" class="form-control" id="food-calories" placeholder="Please enter a calorie amount">
               </div>
-              <button type="submit" class="btn btn-primary">Add Food</button>
+              <div id="calorie-warning" style="display:none">
+                <p style="color:red">Please enter a calorie amount</p>
+              </div>
+              <!-- <button type="submit" class="btn btn-primary">Add Food</button> -->
             </form>
+            <button type="submit" onClick = "validations()" class="btn btn-primary">Add Food</button>
 
 
             <div class="row">
               <form>
                 <div class="form-group text-center">
                   <label for="">Filter by name</label>
-                  <input type="" class="form-control" id="" placeholder="">
+                  <input type="text" onkeyup="myFunction()"class="form-control" id="search" placeholder="">
                 </div>
               </form>
             </div>
@@ -45,7 +52,7 @@
               <tr>
                 <th class="text-center" id="name">Name</th>
                 <th class="text-center" id="calories">Calories</th>
-                <th></th>
+                <th class="text-center">Delete</th>
               </tr>
             </table>
 
@@ -56,5 +63,107 @@
     </div>
 
   <script src="main.bundle.js"></script>
+    
+  <script>
+function myFunction() {
+
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("foods-table");
+  tr = table.getElementsByTagName("tr");
+
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+<script>
+  function deleteFood(data){
+    // debugger;
+  //   data.closest('tr').innerHTML=""
+  // }
+  let foodParams = {name:data.closest('tr').children[0].innerHTML,visible:"false", calories:data.closest('tr').children[1].innerHTML}
+  $.ajax({
+    url: `http://localhost:3000/api/v1/foods/${data.closest('tr').children[2].innerHTML}`,
+    type: 'PATCH',
+    data: foodParams,
+  }).then(location.reload())
+    .catch(function(error){
+    console.error(error)
+  })
+}
+</script>
+<script>
+function createFood(){
+  var foodName = $('#food-name')[0].value;
+  var foodCalories = $('#food-calories')[0].value;
+  var newDate = new Date();
+  var foodDate = `${newDate.getFullYear()}-${newDate.getMonth()+1}-${newDate.getDate()} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}.${newDate.getMilliseconds()}`
+
+  let foodParams = {name: foodName, calories: foodCalories, created_at: foodDate};
+  $.ajax({
+    url: "http://localhost:3000/api/v1/foods",
+    type: 'post',
+    data: foodParams,
+  }).then(location.reload())
+    .catch(function(error){
+    console.error(error)
+  })
+
+}
+</script>
+<script>
+function validations (){
+  $('#name-warning').css("display", "none")
+  $('#calorie-warning').css("display", "none")
+
+  if($('#food-name')[0].value == "" && $('#food-calories')[0].value == ""){
+    $('#name-warning').css("display", "inline")
+    $('#calorie-warning').css("display", "inline")
+  }else if($('#food-calories')[0].value == ""){
+    $('#calorie-warning').css("display", "inline")
+  }else if($('#food-name')[0].value == ""){
+    $('#name-warning').css("display", "inline")
+  }else{
+    createFood()
+  }
+
+}
+</script>
+<script>
+  function rowEditVerification(row, e){
+    if (e){
+      if (e.keyCode == 13){
+        rowEdit(row)
+      }
+    }else{
+      rowEdit(row)
+    }
+
+  }
+</script>
+<script>
+  function rowEdit (row){
+    let foodParams = {name:row.closest('tr').children[0].innerHTML,visible:"true", calories:row.closest('tr').children[1].innerHTML}
+    $.ajax({
+      url: `http://localhost:3000/api/v1/foods/${row.closest('tr').children[2].innerHTML}`,
+      type: 'PATCH',
+      data: foodParams,
+    }).then(location.reload())
+      .catch(function(error){
+      console.error(error)
+    })
+  }
+
+</script>
 </body>
 </html>
