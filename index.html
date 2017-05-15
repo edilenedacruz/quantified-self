@@ -2,17 +2,32 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+<script src="./lib/date.js"></script>
+<script src="./lib/populateData.js"></script>
   <title>Quantified Self - Diary</title>
 </head>
 <body>
   <div class="container-fluid">
-    <div class="row">
-      <h1 class="text-center"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>May 10th, 2017<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></h1>
+    <div class="row" id="date-header">
+
+      <div class="col-md-4">
+        <button type="button" class="btn btn-default" id="previous-date">previous</button>
+      </div>
+      <div class="col-md-4">
+        <section id="date"></section>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-default" id="next-date">next</button>
+      </div>
+      <!-- <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="previousDate"></span> -->
+      <!-- <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" id="forward"></span></h1> -->
     </div>
     <div class="row">
       <div class="col-md-1"></div>
@@ -22,7 +37,7 @@
               <h3 class="text-center">Breakfast</h3>
             </tr>
             <tr>
-              <th></th>
+
               <th class="text-center">Name</th>
               <th class="text-center">Calories</th>
               <th></th>
@@ -48,7 +63,6 @@
               <h3 class="text-center">Lunch</h3>
             </tr>
             <tr>
-              <th></th>
               <th class="text-center">Name</th>
               <th class="text-center">Calories</th>
               <th></th>
@@ -78,7 +92,6 @@
             <h3 class="text-center">Dinner</h3>
           </tr>
           <tr>
-            <th></th>
             <th class="text-center">Name</th>
             <th class="text-center">Calories</th>
             <th></th>
@@ -102,7 +115,6 @@
             <h3 class="text-center">Snacks</h3>
           </tr>
           <tr>
-            <th></th>
             <th class="text-center">Name</th>
             <th class="text-center">Calories</th>
             <th></th>
@@ -155,23 +167,26 @@
     <div class="col-md-1">
 
     </div>
+
     <div class="col-md-4">
       <div class="row">
-        <h3 class="text-center">Search by Name</h3>
-        <input type="text" name="" value="">
+        <form>
+          <div class="form-group text-center">
+            <label for="">Filter by name</label>
+            <input type="text" onkeyup="filterByName()"class="form-control" id="search" placeholder="">
+          </div>
+        </form>
       </div>
-      <table class="table table-bordered">
-          <h3 class="text-center">Totals</h3>
+
+      <table id="index-foods-table" class="table table-bordered">
+        <tr>
+          <h3 class="text-center"></h3>
         </tr>
-        <tbody>
-            <th>Name</th>
-            <td>2000</td>
-          </tr>
-          <tr>
-            <th>Calories</th>
-            <td>500</td>
-          </tr>
-        </tbody>
+        <tr>
+          <th class="text-center"></th>
+          <th class="text-center" id="name">Name</th>
+          <th class="text-center" id="calories">Calories</th>
+        </tr>
       </table>
     </div>
     <div class="col-md-1"></div>
@@ -187,5 +202,6 @@
 </div>
 
   <script src="main.bundle.js"></script>
+
 </body>
 </html>

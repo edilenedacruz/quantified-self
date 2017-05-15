@@ -30,6 +30,7 @@
     "mocha-loader": "^1.0.0",
     "node-libs-browser": "^1.0.0",
     "node-sass": "^4.3.0",
+    "nodemon": "^1.11.0",
     "sass-loader": "^4.1.1",
     "selenium-webdriver": "^3.0.1",
     "style-loader": "^0.13.1",
@@ -39,6 +40,8 @@
   },
   "dependencies": {
     "cors": "^2.8.3",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "knex": "^0.13.0",
+    "moment": "^2.18.1"
   }
 }
