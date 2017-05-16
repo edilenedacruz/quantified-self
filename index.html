@@ -11,6 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
 <script src="./lib/date.js"></script>
 <script src="./lib/populateData.js"></script>
+<script src="./lib/createMealFoodItems.js"></script>
   <title>Quantified Self - Diary</title>
 </head>
 <body>
@@ -192,16 +193,17 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <h3 class="text-center">Add Selected To</h3>
-        <button type="button" class="btn btn-primary">Breakfast</button>
-        <button type="button" class="btn btn-primary">Lunch</button>
-        <button type="button" class="btn btn-primary">Dinner</button>
-        <button type="button" class="btn btn-primary">Snack</button>
+        <button type="button" id = "breakfast-button" onClick="createMealDiaryItem(1)" class="btn btn-primary">Breakfast</button>
+        <button type="button" onClick="createMealDiaryItem(1)" class="btn btn-primary">Lunch</button>
+        <button type="button" onClick="createMealDiaryItem(1)" class="btn btn-primary">Dinner</button>
+        <button type="button" onClick="createMealDiaryItem(1)" class="btn btn-primary">Snack</button>
     </div>
   </div>
 
 </div>
 
   <script src="main.bundle.js"></script>
+
 
 </body>
 </html>
