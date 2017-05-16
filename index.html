@@ -17,13 +17,13 @@
   <div class="container-fluid">
     <div class="row" id="date-header">
 
-      <div class="col-md-4">
+      <div class="col-md-4 text-center">
         <button type="button" class="btn btn-default" id="previous-date">previous</button>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 text-center">
         <section id="date"></section>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 text-center">
         <button type="button" class="btn btn-default" id="next-date">next</button>
       </div>
       <!-- <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="previousDate"></span> -->
@@ -142,23 +142,15 @@
       </div>
     </div>
     <div class="col-md-4">
-      <table class="table table-bordered">
+      <table class="table table-bordered" id="total-calories">
           <h3 class="text-center">Totals</h3>
         </tr>
         <tbody>
           <tr>
-            <th>Goal Calories</th>
-            <td>2000</td>
-
-          </tr>
-          <tr>
+            <th id="total-calories">Goal Calories</th>
             <th>Calories Consumed</th>
-            <td>500</td>
-
-          </tr>
-          <tr>
             <th>Remaining Calories</th>
-            <td>1500</td>
+            <!-- <td id="total-calories">2000</td> -->
           </tr>
         </tbody>
       </table>
