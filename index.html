@@ -10,7 +10,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
 <script src="./lib/date.js"></script>
+<!-- <script src="./lib/index.js"></script> -->
 <script src="./lib/populateData.js"></script>
+<script src="./lib/createMealFoodItems.js"></script>
+<script src="./lib/populateMealTables.js"></script>
   <title>Quantified Self - Diary</title>
 </head>
 <body>
@@ -26,13 +29,11 @@
       <div class="col-md-4 text-center">
         <button type="button" class="btn btn-default" id="next-date">next</button>
       </div>
-      <!-- <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="previousDate"></span> -->
-      <!-- <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" id="forward"></span></h1> -->
     </div>
     <div class="row">
       <div class="col-md-1"></div>
         <div class="col-md-4">
-          <table class="table table-bordered">
+          <table class="table table-bordered meals-table" id="meal-table-one">
             <tr>
               <h3 class="text-center">Breakfast</h3>
             </tr>
@@ -42,23 +43,11 @@
               <th class="text-center">Calories</th>
               <th></th>
             </tr>
-            <tr>
-
-              <td class="text-center">Pizza</td>
-              <td class="text-center">130</td>
-              <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-            </tr>
-            <tr>
-
-              <td class="text-center">Cantaloupe</td>
-              <td class="text-center">20</td>
-              <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-            </tr>
           </table>
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-4">
-          <table class="table table-bordered">
+          <table class="table table-bordered meals-table" id="meal-table-two">
             <tr>
               <h3 class="text-center">Lunch</h3>
             </tr>
@@ -66,18 +55,6 @@
               <th class="text-center">Name</th>
               <th class="text-center">Calories</th>
               <th></th>
-            </tr>
-            <tr>
-
-              <td class="text-center">Pizza</td>
-              <td class="text-center">130</td>
-              <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-            </tr>
-            <tr>
-
-              <td class="text-center">Cantaloupe</td>
-              <td class="text-center">20</td>
-              <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
             </tr>
           </table>
         </div>
@@ -87,7 +64,7 @@
   <div class="row">
     <div class="col-md-1"></div>
       <div class="col-md-4">
-        <table class="table table-bordered">
+        <table class="table table-bordered meals-table" id="meal-table-three">
           <tr>
             <h3 class="text-center">Dinner</h3>
           </tr>
@@ -96,21 +73,11 @@
             <th class="text-center">Calories</th>
             <th></th>
           </tr>
-          <tr>
-            <td class="text-center">PizzaPizza</td>
-            <td class="text-center">130</td>
-            <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-          </tr>
-          <tr>
-            <td class="text-center">Cantaloupe</td>
-            <td class="text-center">20</td>
-            <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-          </tr>
         </table>
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-4">
-        <table class="table table-bordered">
+        <table class="table table-bordered meals-table" id="meal-table-four">
           <tr>
             <h3 class="text-center">Snacks</h3>
           </tr>
@@ -119,16 +86,7 @@
             <th class="text-center">Calories</th>
             <th></th>
           </tr>
-          <tr>
-            <td class="text-center">Pizza</td>
-            <td class="text-center">130</td>
-            <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-          </tr>
-          <tr>
-            <td class="text-center">Cantaloupe</td>
-            <td class="text-center">20</td>
-            <td class="text-center"><button type="button" class="btn btn-default btn-small" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-          </tr>
+
         </table>
       </div>
     <div class="col-md-1"></div>
@@ -137,6 +95,7 @@
     <div class="col-md-6">
       <div class="text-center">
         <h3>Foods</h3>
+
         <a href="/foods.html"><button type="button" class="btn btn-primary btn-small" aria-label="Left Align">Create new</button></a>
 
       </div>
@@ -185,16 +144,17 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <h3 class="text-center">Add Selected To</h3>
-        <button type="button" class="btn btn-primary">Breakfast</button>
-        <button type="button" class="btn btn-primary">Lunch</button>
-        <button type="button" class="btn btn-primary">Dinner</button>
-        <button type="button" class="btn btn-primary">Snack</button>
+        <button type="button" id = "breakfast-button" onClick="createMealDiaryItem(1)" class="btn btn-primary">Breakfast</button>
+        <button type="button" onClick="createMealDiaryItem(2)" class="btn btn-primary">Lunch</button>
+        <button type="button" onClick="createMealDiaryItem(3)" class="btn btn-primary">Dinner</button>
+        <button type="button" onClick="createMealDiaryItem(4)" class="btn btn-primary">Snack</button>
     </div>
   </div>
 
 </div>
 
   <script src="main.bundle.js"></script>
+
 
 </body>
 </html>
