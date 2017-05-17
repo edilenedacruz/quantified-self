@@ -88,9 +88,7 @@ function myFunction() {
 </script>
 <script>
   function deleteFood(data){
-    // debugger;
-  //   data.closest('tr').innerHTML=""
-  // }
+
   let foodParams = {name:data.closest('tr').children[0].innerHTML,visible:"false", calories:data.closest('tr').children[1].innerHTML}
   $.ajax({
     url: `http://localhost:3000/api/v1/foods/${data.closest('tr').children[2].innerHTML}`,
