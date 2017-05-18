@@ -33,7 +33,7 @@
               </div>
               <!-- <button type="submit" class="btn btn-primary">Add Food</button> -->
             </form>
-            <button id="add-food-button" type="submit" onClick = "validations()" class="btn btn-primary">Add Food</button>
+            <button type="submit" onClick = "validations()" class="btn btn-primary">Add Food</button>
 
 
             <div class="row">
@@ -88,10 +88,12 @@ function myFunction() {
 </script>
 <script>
   function deleteFood(data){
-
+    // debugger;
+  //   data.closest('tr').innerHTML=""
+  // }
   let foodParams = {name:data.closest('tr').children[0].innerHTML,visible:"false", calories:data.closest('tr').children[1].innerHTML}
   $.ajax({
-    url: `https://be-quantified-self.herokuapp.com/api/v1/foods/${data.closest('tr').children[2].innerHTML}`,
+    url: `http://localhost:3000/api/v1/foods/${data.closest('tr').children[2].innerHTML}`,
     type: 'PATCH',
     data: foodParams,
   }).then(location.reload())
@@ -109,7 +111,7 @@ function createFood(){
 
   let foodParams = {name: foodName, calories: foodCalories, created_at: foodDate};
   $.ajax({
-    url: "https://be-quantified-self.herokuapp.com/api/v1/foods",
+    url: "http://localhost:3000/api/v1/foods",
     type: 'post',
     data: foodParams,
   }).then(location.reload())
@@ -153,7 +155,7 @@ function validations (){
   function rowEdit (row){
     let foodParams = {name:row.closest('tr').children[0].innerHTML,visible:"true", calories:row.closest('tr').children[1].innerHTML}
     $.ajax({
-      url: `https://be-quantified-self.herokuapp.com/api/v1/foods/${row.closest('tr').children[2].innerHTML}`,
+      url: `http://localhost:3000/api/v1/foods/${row.closest('tr').children[2].innerHTML}`,
       type: 'PATCH',
       data: foodParams,
     }).then(location.reload())

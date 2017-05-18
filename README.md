@@ -66,7 +66,7 @@ npm start
 
 Once the server is running, visit in your browser:
 
-  * `http://localhost:8080/webpack-dev-server/` to run your application.
+* `http://localhost:8080/webpack-dev-server/` to run your application.
 * `http://localhost:8080/webpack-dev-server/test.html` to run your test suite in the browser.
 
 To build the static files. This must be done before committing and pushing if you want your site to work at github.io:
