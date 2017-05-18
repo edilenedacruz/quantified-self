@@ -98,7 +98,7 @@
         <h3>Foods</h3>
 
         <a href="/foods.html"><button type="button" class="btn btn-primary btn-small" aria-label="Left Align">Create new</button></a>
-        <button id="debug-button" type="button" class="btn btn-primary btn-small" aria-label="Left Align" style="display:none">Debugger</button></a>
+        <button id="debug-button" type="button" class="btn btn-primary btn-small" aria-label="Left Align">Debugger</button></a>
 
       </div>
     </div>
@@ -111,11 +111,6 @@
             <th class="text-center">Goal Calories</th>
             <th class="text-center">Calories Consumed</th>
             <th class="text-center">Remaining Calories</th>
-          </tr>
-          <tr>
-            <td class="text-center" id="total-calories-row">2000</td>
-            <td class="text-center" id="consumed"></td>
-            <td class="text-center" id="remaining"></td>
           </tr>
         </tbody>
       </table>
@@ -150,12 +145,10 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <h3 class="text-center">Add Selected To</h3>
-      <div class="row text-center">
         <button type="button" id = "breakfast-button" onClick="createMealDiaryItem(1)" class="btn btn-primary">Breakfast</button>
         <button type="button" onClick="createMealDiaryItem(2)" class="btn btn-primary">Lunch</button>
         <button type="button" onClick="createMealDiaryItem(3)" class="btn btn-primary">Dinner</button>
         <button type="button" onClick="createMealDiaryItem(4)" class="btn btn-primary">Snack</button>
-      </div>
     </div>
     <div>
       <p style="display:none" id="date-data-id">3</p>
@@ -163,6 +156,9 @@
   </div>
 
 </div>
+
   <script src="main.bundle.js"></script>
+
+
 </body>
 </html>
