@@ -52,7 +52,7 @@
 
 	function getFoods() {
 	  $.ajax({
-	    url: "http://be-quantified-self.herokuapp.com/api/v1/foods",
+	    url: "https://be-quantified-self.herokuapp.com/api/v1/foods",
 	    method: 'GET'
 	  }).then(populateData).catch(function (error) {
 	    console.error(error);
@@ -80,7 +80,7 @@
 	  let foodParams = { name: foodName, calories: foodCalories, created_at: foodDate };
 
 	  $.ajax({
-	    url: "http://be-quantified-self.herokuapp.com/api/v1/foods",
+	    url: "https://be-quantified-self.herokuapp.com/api/v1/foods",
 	    type: 'post',
 	    data: foodParams
 	  }).then(lookAtData).catch(function (error) {
