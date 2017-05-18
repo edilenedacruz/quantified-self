@@ -93,7 +93,7 @@ function myFunction() {
   // }
   let foodParams = {name:data.closest('tr').children[0].innerHTML,visible:"false", calories:data.closest('tr').children[1].innerHTML}
   $.ajax({
-    url: `http://localhost:3000/api/v1/foods/${data.closest('tr').children[2].innerHTML}`,
+    url: `http://be-quantified-self.herokuapp.com/api/v1/foods/${data.closest('tr').children[2].innerHTML}`,
     type: 'PATCH',
     data: foodParams,
   }).then(location.reload())
@@ -111,7 +111,7 @@ function createFood(){
 
   let foodParams = {name: foodName, calories: foodCalories, created_at: foodDate};
   $.ajax({
-    url: "http://localhost:3000/api/v1/foods",
+    url: "http://be-quantified-self.herokuapp.com/api/v1/foods",
     type: 'post',
     data: foodParams,
   }).then(location.reload())
@@ -155,7 +155,7 @@ function validations (){
   function rowEdit (row){
     let foodParams = {name:row.closest('tr').children[0].innerHTML,visible:"true", calories:row.closest('tr').children[1].innerHTML}
     $.ajax({
-      url: `http://localhost:3000/api/v1/foods/${row.closest('tr').children[2].innerHTML}`,
+      url: `http://be-quantified-self.herokuapp.com/api/v1/foods/${row.closest('tr').children[2].innerHTML}`,
       type: 'PATCH',
       data: foodParams,
     }).then(location.reload())
